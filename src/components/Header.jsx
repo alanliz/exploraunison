@@ -33,7 +33,7 @@ function Header({ search, setSearch }) {
               height="50"
             />
           </Link>
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-2xl font-bold  ">
             <Link to="/">Revista Explora Unison: Ingeniería y Futuro</Link>
           </h1>
         </div>

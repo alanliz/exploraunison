@@ -29,6 +29,19 @@ const articles = [
     img: "https://storage.googleapis.com/a1aa/image/xP1JcT3n7e2YVSZbeBaolYnv1bfbEio3FaKNqsQmueR1V5gPB.jpg",
     pdf: "#",
   },
+  {
+    id: "3",
+    title: "Inteligencia Artifical en Sistemas de Información",
+    volume: 5,
+    number: 3,
+    date: "15/02/2023",
+    author: "Dra. María López",
+    pages: 12,
+    abstract:
+      "Artículo sobre robótica aplicada a la mecatrónica y su impacto en la industria moderna.",
+    img: "https://storage.googleapis.com/a1aa/image/xP1JcT3n7e2YVSZbeBaolYnv1bfbEio3FaKNqsQmueR1V5gPB.jpg",
+    pdf: "#",
+  },
 ];
 
 export default function ArticlePage() {
@@ -42,8 +55,16 @@ export default function ArticlePage() {
   const nextArticle = articles[index + 1];
 
   return (
-    <div className="bg-background min-h-screen p-4">
-      <div className="bg-white text-gray-900 p-6 rounded-lg shadow-lg">
+    <div className="bg-[#F5F5F5] min-h-screen p-4">
+      <div className="bg-white text-gray-900 p-6 rounded-lg shadow-lg w-full max-w-3xl mx-auto">
+        {/* Button to go back to all articles */}
+        <Link
+          to="/articles"
+          className="inline-block mb-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Todos los artículos
+        </Link>
+
         <h2 className="text-3xl font-bold mb-4">{article.title}</h2>
         <div className="flex flex-col md:flex-row">
           <img
@@ -71,7 +92,7 @@ export default function ArticlePage() {
           </div>
         </div>
 
-        <div className="flex justify-between mt-6">
+        <div className="flex justify-center mt-6">
           {prevArticle ? (
             <Link
               to={`/article/${prevArticle.id}`}
@@ -87,7 +108,7 @@ export default function ArticlePage() {
           {nextArticle ? (
             <Link
               to={`/article/${nextArticle.id}`}
-              className="flex items-center gap-2 bg-gray-300 text-gray-900 px-4 py-2 rounded hover:bg-gray-400"
+              className="flex items-center gap-2 bg-gray-300 text-gray-900 px-4 py-2 rounded hover:bg-gray-400 ml-4"
             >
               Siguiente Artículo
               <ArrowRightIcon className="w-5 h-5" />

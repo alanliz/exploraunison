@@ -151,7 +151,6 @@ export default function Articles({ search }) {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

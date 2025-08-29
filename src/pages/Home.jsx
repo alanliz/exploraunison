@@ -1,6 +1,6 @@
 function Home() {
   return (
-    <main className="w-full p-4">
+    <main className="w-full p-4 bg-[#F5F5F5]">
       <section className="mb-8">
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-3xl font-bold mb-4">

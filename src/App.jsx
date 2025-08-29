@@ -12,7 +12,7 @@ function App() {
 
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-[#F5F5F5]">
         <Header search={search} setSearch={setSearch} />
         <main className="flex-grow">
           <Routes>

@@ -107,7 +107,7 @@ export default function Articles({ search }) {
     );
 
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
+    <div className="bg-[#F5F5F5] min-h-screen flex flex-col">
       <main className="container mx-auto p-4 flex-grow">
         <section className="mb-8">
           <div className="bg-white p-6 rounded-lg shadow-lg">

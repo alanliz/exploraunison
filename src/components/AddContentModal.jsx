@@ -8,6 +8,7 @@ export default function AddContentModal({ type, onClose, addArticle, addVideo, a
   const [date, setDate] = useState("");
   const [pages, setPages] = useState("");
   const [abstractText, setAbstractText] = useState("");
+  const [pdfFile, setPdfFile] = useState(null); // new state for PDF
 
   const titleRef = useRef(null);
   const authorRef = useRef(null);
@@ -35,6 +36,7 @@ export default function AddContentModal({ type, onClose, addArticle, addVideo, a
         date,
         pages,
         abstract: abstractText,
+        pdf: pdfFile, // include the uploaded PDF
       };
       addArticle(newArticle);
     } else if (type === "Video") {
@@ -73,7 +75,7 @@ export default function AddContentModal({ type, onClose, addArticle, addVideo, a
               type="text"
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
-              className="border p-2 rounded w-full ml-2"
+              className="border p-2 rounded w-full"
               placeholder="Autor"
             />
           </label>
@@ -123,15 +125,28 @@ export default function AddContentModal({ type, onClose, addArticle, addVideo, a
 
         {/* Abstract */}
         {type === "Artículo" && (
-          <label className="block mb-4">
-            Abstract:
-            <textarea
-              value={abstractText}
-              onChange={(e) => setAbstractText(e.target.value)}
-              className="border p-2 rounded w-full"
-              rows={4}
-            />
-          </label>
+          <>
+            <label className="block mb-4">
+              Abstract:
+              <textarea
+                value={abstractText}
+                onChange={(e) => setAbstractText(e.target.value)}
+                className="border p-2 rounded w-full"
+                rows={4}
+              />
+            </label>
+
+            {/* PDF upload */}
+            <label className="block mb-4">
+              Subir PDF:
+              <input
+                type="file"
+                accept="application/pdf"
+                onChange={(e) => setPdfFile(e.target.files[0])}
+                className="border p-1 rounded w-50 ml-2"
+              />
+            </label>
+          </>
         )}
 
         {/* Fields for Video / Noticia */}

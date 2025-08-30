@@ -1,24 +1,38 @@
+import { Link } from "react-router-dom";
+
 function Home() {
   return (
     <main className="w-full p-4 bg-[#F5F5F5] text-textprimary">
+      {/* Intro */}
       <section className="mb-8">
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-3xl font-bold mb-4 ">
             Bienvenidos a la Revista Explora Unison
           </h2>
           <p className="text-lg mb-4">
-            Publicación digital de artículos, investigaciones y contenidos educativos de fácil acceso.
+            Publicación digital de artículos, investigaciones y contenidos
+            educativos de fácil acceso.
           </p>
           <h2 className="text-2xl font-bold mb-4">Quiénes Somos</h2>
           <p className="text-lg">
-            Somos una revista digital de divulgación científica de la Universidad de Sonora, enfocada en la ingeniería y el futuro.
+            Somos una revista digital de divulgación científica de la Universidad
+            de Sonora, enfocada en la ingeniería y el futuro.
           </p>
         </div>
       </section>
 
+      {/* Videos */}
       <section className="mb-8">
         <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold mb-4">Videos de Ingeniería</h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold">Videos de Ingeniería</h2>
+            <Link
+              to="/videos"
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            >
+              Ver todos
+            </Link>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[1, 2, 3].map((num) => (
               <div key={num} className="bg-gray-200 p-4 rounded-lg">
@@ -37,9 +51,18 @@ function Home() {
         </div>
       </section>
 
+      {/* Noticias */}
       <section className="mb-8">
         <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold mb-4">Noticias de Ingeniería</h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold">Noticias de Ingeniería</h2>
+            <Link
+              to="/noticias"
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            >
+              Ver todas
+            </Link>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="bg-gray-200 p-4 rounded-lg">
               <img

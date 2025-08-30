@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <main className="w-full p-4 bg-[#F5F5F5] text-textprimary">
+    <main className="container mx-auto p-4 bg-[#F5F5F5] text-textprimary">
       {/* Intro */}
       <section className="mb-8">
         <div className="bg-white p-6 rounded-lg shadow-lg">

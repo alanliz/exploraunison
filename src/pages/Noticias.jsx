@@ -1,12 +1,12 @@
 import React from 'react';
 import { useOutletContext, useNavigate, Link } from 'react-router-dom';
+import placeholderImage from "../assets/placeholder-news.png"; // ¡Asegúrate de que esta ruta sea correcta!
 
 function NewsCard({ noticia }) {
-  const placeholderImage = "https://placehold.co/600x400/e2e8f0/e2e8f0";
-
   return (
     <Link to={`/noticia/${noticia.id}`} className="block h-full">
       <div className="bg-white p-4 h-full rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer flex flex-col">
+        {/* Usa la imagen real o el placeholder estático */}
         <img
           src={noticia.imageUrl || placeholderImage}
           alt={noticia.title}

@@ -48,7 +48,7 @@ export const noticiasData = [
     id: 1,
     title: "Revolución Agrícola: Estudiantes Implementan Drones con IA en Campos de Sonora",
     description: "Un equipo multidisciplinario de la Unison desarrolla un sistema para monitorear cultivos y optimizar el uso del agua.",
-    imageUrl: "https://images.unsplash.com/photo-1621838440330-928507c8734c?q=80&w=2070&auto=format&fit=crop",
+    imageUrl: "",
     author: "Ana Valenzuela",
     date: "2025-09-15",
     content: `En un esfuerzo por combatir la escasez de agua y mejorar la eficiencia agrícola en el estado, un grupo de estudiantes de último semestre de Ingeniería en Mecatrónica ha presentado un proyecto pionero que utiliza drones equipados con cámaras multiespectrales e inteligencia artificial. El sistema, llamado "Ojo del Desierto", permite analizar la salud de los cultivos, detectar plagas de forma temprana y generar mapas de riego de alta precisión que se ajustan a las necesidades específicas de cada sección del campo.
@@ -70,7 +70,7 @@ Durante el recorrido inaugural, se destacaron el nuevo laboratorio de pruebas s�
     id: 3,
     title: "Lanzan Programa de Becas 'Ingenieras del Futuro' para Impulsar el Talento Femenino",
     description: "En alianza con empresas líderes, la Unison crea un nuevo fondo de becas destinado a reducir la brecha de género en carreras STEM.",
-    imageUrl: "https://images.unsplash.com/photo-1573164574572-597e5627b7c3?q=80&w=2069&auto=format&fit=crop",
+    imageUrl: "https://st.mextudia.com/wp-content/uploads/2025/01/pasos-para-solicitar-una-beca.webp",
     author: "Sofía Robles",
     date: "2025-09-05",
     content: `Con el objetivo de fomentar la participación y el liderazgo de las mujeres en áreas de ciencia, tecnología, ingeniería y matemáticas (STEM), la Universidad de Sonora, en colaboración con un consorcio de empresas tecnológicas y mineras, ha lanzado el programa de becas "Ingenieras del Futuro". Este programa ofrecerá apoyo financiero completo, mentorías con profesionales destacadas y oportunidades de prácticas profesionales para 50 estudiantes de nuevo ingreso cada año.
@@ -81,7 +81,7 @@ Durante el recorrido inaugural, se destacaron el nuevo laboratorio de pruebas s�
     id: 4,
     title: "Desarrollan Software de Código Abierto para la Modelación de Yacimientos Mineros",
     description: "Un equipo del Departamento de Minas y Geología crea una herramienta para mejorar la seguridad y eficiencia en la planeación minera.",
-    imageUrl: "https://images.unsplash.com/photo-1629231409556-51a7b213b35b?q=80&w=1964&auto=format&fit=crop",
+    imageUrl: "https://universidadinsurgentes.edu.mx/wp-content/uploads/2023/10/Ing-IndustrialSistemas.webp",
     author: "Miguel Hernandez",
     date: "2025-08-28",
     content: `Respondiendo a las necesidades de la industria minera regional, un grupo de investigación y estudiantes de posgrado ha liberado la primera versión de "GeoModel-SON", un software de código abierto para la modelación tridimensional de yacimientos. A diferencia de las costosas licencias de software comercial, esta herramienta permite a pequeñas y medianas empresas mineras realizar análisis geológicos complejos sin una gran inversión inicial, democratizando el acceso a la tecnología.
@@ -92,7 +92,7 @@ El software utiliza algoritmos geoestadísticos para predecir la distribución d
     id: 5,
     title: "Equipo 'Baja Unison' se Prepara para Competencia Internacional de Vehículos Off-Road",
     description: "Estudiantes de ingeniería diseñan y construyen desde cero un vehículo todo terreno para el prestigioso concurso Baja SAE.",
-    imageUrl: "https://images.unsplash.com/photo-1568652654012-2c695d7353b3?q=80&w=1974&auto=format&fit=crop",
+    imageUrl: "",
     author: "Rodrigo Parra",
     date: "2025-08-22",
     content: `El taller de Ingeniería Mecánica está en plena ebullición. Entre el ruido de soldadoras y herramientas, el equipo 'Baja Unison' trabaja contra reloj para finalizar su prototipo para la competencia Baja SAE, un evento internacional donde universidades de todo el mundo ponen a prueba sus vehículos todo terreno diseñados y construidos por estudiantes. El vehículo, bautizado como "Cimarrón", cuenta con un chasis ultraligero de acero cromado, una suspensión de largo recorrido diseñada por el propio equipo y un sistema de telemetría en tiempo real.

@@ -50,7 +50,7 @@ export default function NoticiaPage() {
           </div>
         </div>
 
-        {/* --- CAMBIO: La imagen solo aparece si 'noticia.imageUrl' existe --- */}
+        {/* --- CAMBIO CRÍTICO: Esta sección se oculta completamente si 'noticia.imageUrl' no existe --- */}
         {noticia.imageUrl && (
           <img
             src={noticia.imageUrl}

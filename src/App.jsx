@@ -56,9 +56,10 @@ function App() {
   };
 
   const handleDeleteContent = async (id, type) => {
-    await contentService.deleteContent(id, type);
-    const key = keyMap[type];
+    // Pide confirmación antes de llamar al servicio
     if (window.confirm(`¿Estás seguro de que quieres eliminar este ${type.toLowerCase()}?`)) {
+      await contentService.deleteContent(id, type);
+      const key = keyMap[type];
       setContent(prev => ({ ...prev, [key]: prev[key].filter(item => item.id !== id) }));
     }
   };

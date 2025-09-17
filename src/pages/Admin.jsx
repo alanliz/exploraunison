@@ -18,8 +18,8 @@ export default function Admin({ onLogout, content, loading, onAddContent, onUpda
 
   const keyMap = { articulos: 'articles', videos: 'videos', noticias: 'news' };
 
-  const handleOpenEditModal = (content) => {
-    setContentToEdit(content);
+  const handleOpenEditModal = (item) => {
+    setContentToEdit(item);
     setIsModalOpen(true);
   };
 
@@ -92,7 +92,6 @@ export default function Admin({ onLogout, content, loading, onAddContent, onUpda
                   </tbody>
                 </table>
               )}
-              
               {activeTab === 'videos' && (
                 <table className="min-w-full text-left">
                   <thead className="border-b bg-gray-50">
@@ -114,7 +113,6 @@ export default function Admin({ onLogout, content, loading, onAddContent, onUpda
                   </tbody>
                 </table>
               )}
-
               {activeTab === 'noticias' && (
                  <table className="min-w-full text-left">
                   <thead className="border-b bg-gray-50">

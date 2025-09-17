@@ -1,4 +1,5 @@
 import { Link, useOutletContext } from "react-router-dom";
+import placeholderImage from "../assets/placeholder-news.png";
 
 function Home() {
   const { content, loading } = useOutletContext();
@@ -6,8 +7,6 @@ function Home() {
   const videos = content.videos?.slice(0, 3) || [];
   const noticias = content.news?.slice(0, 3) || [];
   
-  const placeholderImage = "https://placehold.co/600x400/e2e8f0/e2e8f0";
-
   if (loading) {
     return <div className="text-center p-8">Cargando contenido...</div>;
   }

@@ -1,13 +1,17 @@
-// src/pages/ArticlePage.jsx
-
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { articlesData } from '../data/mockData';
+import { useParams, Link, useOutletContext } from 'react-router-dom';
 
 export default function ArticlePage() {
+  const { id } = useParams();
+  const { content, loading } = useOutletContext();
+  
+  if (loading) {
+    return <div className="text-center p-8">Cargando artículo...</div>;
+  }
 
-  const { id } = useParams(); 
-  const article = articlesData.find(a => a.id === Number(id));
+  const articles = content.articles || [];
+  const article = articles.find(a => a.id === Number(id));
+
   if (!article) {
     return (
       <div className="container mx-auto p-8 text-center">
@@ -19,16 +23,13 @@ export default function ArticlePage() {
     );
   }
 
-  // Si encontramos el artículo, lo mostramos.
   return (
     <div className="container mx-auto p-8">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
         <Link to="/articles" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-6 inline-block">
           &larr; Todos los artículos
         </Link>
-
         <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
-        
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/3">
             <img 
@@ -39,33 +40,43 @@ export default function ArticlePage() {
           </div>
           <div className="md:w-2/3">
             <div className="text-lg space-y-2">
+              <p><strong>Autor:</strong> {article.author}</p>
+              <p><strong>Fecha:</strong> {article.date}</p>
               <p><strong>Volumen:</strong> {article.volume}</p>
               <p><strong>Número:</strong> {article.number}</p>
-              <p><strong>Fecha:</strong> {article.date}</p>
-              <p><strong>Autor:</strong> {article.author}</p>
-              {/* Puedes añadir más campos si los tienes */}
-              <p className="pt-4">
-                <strong>Abstract:</strong> Este artículo explora las últimas innovaciones en la ingeniería industrial...
-              </p>
+              <p><strong>Páginas:</strong> {article.pages}</p>
             </div>
-            <button className="mt-6 bg-red-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-red-700">
-              Descargar PDF
-            </button>
+            {article.pdfUrl && (
+              <a 
+                href={article.pdfUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                download={`${article.title.replace(/\s/g, '_')}.pdf`}
+                className="mt-6 bg-red-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-red-700 inline-block"
+              >
+                Descargar PDF
+              </a>
+            )}
           </div>
         </div>
         
-        {/* Opcional: Navegación al siguiente/anterior artículo */}
+        {/* --- SECCIÓN CORREGIDA --- */}
         <div className="mt-8 pt-6 border-t flex justify-between">
-          {Number(id) > 1 && 
-            <Link to={`/article/${Number(id) - 1}`} className="text-gray-600 hover:text-black">
+          {/* Botón "Anterior" (visible si no es el primer artículo) */}
+          {Number(id) > 1 ? (
+            <Link to={`/article/${Number(id) - 1}`} className="text-gray-600 hover:text-black font-semibold">
               &larr; Artículo Anterior
             </Link>
-          }
-          {Number(id) < articlesData.length && 
-            <Link to={`/article/${Number(id) + 1}`} className="text-gray-600 hover:text-black">
+          ) : (
+            <div></div> // Un div vacío para mantener el espaciado
+          )}
+          
+          {/* Botón "Siguiente" (visible si no es el último artículo) */}
+          {Number(id) < articles.length && (
+            <Link to={`/article/${Number(id) + 1}`} className="text-gray-600 hover:text-black font-semibold">
               Artículo Siguiente &rarr;
             </Link>
-          }
+          )}
         </div>
       </div>
     </div>

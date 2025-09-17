@@ -10,13 +10,13 @@ export const videosData = [
     id: 2,
     title: "Principios de la Inteligencia Artificial",
     description: "Cómo las máquinas aprenden y razonan.",
-    videoId: "S_y9i8f-fOQ",
+    videoId: "WwLinu92UPI",
   },
   {
     id: 3,
     title: "Desarrollo Sostenible en Ingeniería",
     description: "Construyendo un mañana más verde.",
-    videoId: "xGkf5q_wQ9o",
+    videoId: "u0iEGk0Tjoc",
   },
 ];
 
@@ -68,6 +68,7 @@ export const articlesData = [
     date: "01/01/2023",
     volume: 1,
     number: 1,
+    pages: 12,
     img: "https://storage.googleapis.com/a1aa/image/520VHyBTuK5tIdDYRNDPeCt5kfGwzDc1Xw5NQE8H3cohVO4TA.jpg",
   },
   {

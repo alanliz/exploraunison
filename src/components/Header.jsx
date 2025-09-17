@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import logo from "../assets/logo_white_nobg.png";
 
@@ -19,7 +20,16 @@ function SearchInput({ search, setSearch }) {
   );
 }
 
-function Header({ search, setSearch }) {
+export default function Header({ search, setSearch }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (search && location.pathname !== "/articles") {
+      navigate("/articles");
+    }
+  }, [search, navigate, location]);
+
   return (
     <header className="bg-[#24398A] text-white p-4">
       <div className="w-full flex justify-between items-center">
@@ -33,7 +43,7 @@ function Header({ search, setSearch }) {
               height="50"
             />
           </Link>
-          <h1 className="text-2xl font-bold  ">
+          <h1 className="text-2xl font-bold">
             <Link to="/">Revista Explora Unison: Ingeniería y Futuro</Link>
           </h1>
         </div>
@@ -46,7 +56,10 @@ function Header({ search, setSearch }) {
               <Link className="hover:underline" to="/articles">Artículos</Link>
             </li>
             <li>
-              <a className="hover:underline" href="#">Quiénes Somos</a>
+              <Link className="hover:underline" to="/videos">Videos</Link>
+            </li>
+            <li>
+              <Link className="hover:underline" to="/noticias">Noticias</Link>
             </li>
           </ul>
           <SearchInput search={search} setSearch={setSearch} />
@@ -55,5 +68,3 @@ function Header({ search, setSearch }) {
     </header>
   );
 }
-
-export default Header;

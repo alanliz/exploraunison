@@ -1,13 +1,11 @@
-// src/components/AddContentModal.jsx
-
 import { useState, useEffect } from "react";
 
-export default function AddContentModal({ 
-  type, 
-  onClose, 
-  contentToEdit, 
-  addContent, 
-  updateContent 
+export default function AddContentModal({
+  type,
+  onClose,
+  contentToEdit,
+  addContent,
+  updateContent
 }) {
   const [formData, setFormData] = useState({});
   const isEditing = !!contentToEdit;
@@ -16,7 +14,6 @@ export default function AddContentModal({
     if (isEditing) {
       setFormData({ ...contentToEdit });
     } else {
-      // Limpiamos el formulario si estamos en modo "Crear"
       setFormData({
         title: "", author: "", volume: "", number: "", date: "", pages: "",
         description: "", videoId: "", imageUrl: "", content: "", pdfFile: null,
@@ -26,17 +23,14 @@ export default function AddContentModal({
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: files ? files[0] : value
-    }));
+    setFormData(prev => ({ ...prev, [name]: files ? files[0] : value }));
   };
 
   const handleSubmit = () => {
     if (isEditing) {
-      updateContent({ ...contentToEdit, ...formData });
+      updateContent(formData, type);
     } else {
-      addContent({ id: Date.now(), ...formData });
+      addContent(formData, type);
     }
     onClose();
   };
@@ -45,9 +39,8 @@ export default function AddContentModal({
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-60">
       <div className="bg-white p-8 rounded-lg shadow-2xl w-full max-w-3xl max-h-[95vh] overflow-y-auto">
         <h2 className="text-2xl font-bold mb-6 text-gray-800">{isEditing ? `Editar ${type}` : `Agregar ${type}`}</h2>
-        
         <div className="space-y-4">
-          {/* --- CAMPOS PARA ARTÍCULOS --- */}
+          
           {type === 'Artículo' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
               <div className="md:col-span-2">
@@ -58,8 +51,6 @@ export default function AddContentModal({
                 <label className="block text-sm font-medium text-gray-700 mb-1">Autor</label>
                 <input name="author" value={formData.author || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
               </div>
-              
-              {/* --- CAMPOS DETALLADOS RESTAURADOS --- */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Volumen</label>
                 <input name="volume" type="number" value={formData.volume || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
@@ -69,7 +60,7 @@ export default function AddContentModal({
                 <input name="number" type="number" value={formData.number || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Fecha de Publicación</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Fecha</label>
                 <input name="date" type="date" value={formData.date || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
               </div>
               <div>
@@ -83,11 +74,10 @@ export default function AddContentModal({
             </div>
           )}
 
-          {/* --- CAMPOS PARA VIDEOS --- */}
           {type === 'Video' && (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Título del Video</label>
                 <input name="title" value={formData.title || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
               </div>
               <div>
@@ -101,11 +91,10 @@ export default function AddContentModal({
             </div>
           )}
 
-          {/* --- CAMPOS PARA NOTICIAS --- */}
           {type === 'Noticia' && (
             <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
+               <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Título de la Noticia</label>
                 <input name="title" value={formData.title || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
               </div>
               <div>
@@ -122,8 +111,8 @@ export default function AddContentModal({
               </div>
             </div>
           )}
-        </div>
 
+        </div>
         <div className="flex justify-end gap-4 mt-8">
           <button onClick={onClose} className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300">Cancelar</button>
           <button onClick={handleSubmit} className="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700">{isEditing ? 'Guardar Cambios' : 'Agregar'}</button>

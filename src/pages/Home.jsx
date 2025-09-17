@@ -1,67 +1,69 @@
-// src/pages/Home.jsx
-
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { videosData, noticiasData } from "../data/mockData"; // Importamos nuestros datos
+import { Link, useOutletContext } from "react-router-dom";
 
 function Home() {
-  // Usamos el estado para guardar nuestros datos (buena práctica para cuando usemos un backend)
-  const [videos, setVideos] = useState([]);
-  const [noticias, setNoticias] = useState([]);
+  const { content, loading } = useOutletContext();
+  
+  const videos = content.videos?.slice(0, 3) || [];
+  const noticias = content.news?.slice(0, 3) || [];
 
-  // useEffect simula la carga de datos cuando el componente se monta
-  useEffect(() => {
-    // En el futuro, aquí harías la llamada a tu backend.
-    // Por ahora, solo cargamos los datos del archivo local.
-    setVideos(videosData.slice(0, 3)); // Mostramos solo los primeros 3
-    setNoticias(noticiasData.slice(0, 3));
-  }, []); // El array vacío [] asegura que esto solo se ejecute una vez
+  if (loading) {
+    return <div className="text-center p-8">Cargando contenido...</div>;
+  }
 
   return (
-    <main className="container mx-auto p-4 bg-[#F5F5F5] text-textprimary">
+    <main className="container mx-auto p-4 bg-gray-50">
       {/* Intro */}
       <section className="mb-8">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold mb-4 ">
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-4 text-gray-800">
             Bienvenidos a la Revista Explora Unison
           </h2>
-          <p className="text-lg mb-4">
-            Publicación digital de artículos, investigaciones y contenidos
-            educativos de fácil acceso.
-          </p>
-          <h2 className="text-2xl font-bold mb-4">Quiénes Somos</h2>
-          <p className="text-lg">
+          <p className="text-lg text-gray-600">
             Somos una revista digital de divulgación científica de la Universidad
             de Sonora, enfocada en la ingeniería y el futuro.
           </p>
         </div>
       </section>
 
+      {/* --- NUEVA SECCIÓN: LLAMADO A LA ACCIÓN --- */}
+      <section className="mb-8 text-center">
+        <div className="bg-blue-800 text-white p-12 rounded-lg shadow-lg">
+          <h2 className="text-4xl font-extrabold mb-4">Explora Nuestros Artículos</h2>
+          <p className="text-lg mb-8 max-w-2xl mx-auto">
+            Descubre las últimas innovaciones, estudios y avances de la División de Ingeniería de la Universidad de Sonora.
+          </p>
+          <Link 
+            to="/articles" 
+            className="inline-block bg-white text-blue-800 font-bold text-lg px-10 py-3 rounded-full hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-md"
+          >
+            Ver Publicaciones
+          </Link>
+        </div>
+      </section>
+
       {/* Videos */}
       <section className="mb-8">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
+        <div className="bg-white p-6 rounded-lg shadow-md">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold">Videos de Ingeniería</h2>
-            <Link
-              to="/videos"
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-            >
+            <h2 className="text-2xl font-bold text-gray-800">Videos Recientes</h2>
+            <Link to="/videos" className="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
               Ver todos
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {/* AQUÍ ESTÁ LA MAGIA: Usamos .map() para crear los elementos dinámicamente */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {videos.map((video) => (
-              <div key={video.id} className="bg-gray-200 p-4 rounded-lg">
+              <div 
+                key={video.id} 
+                className="bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
+              >
                 <iframe
-                  className="mb-4 rounded-lg"
-                  width="100%"
+                  className="mb-4 rounded-lg w-full"
                   height="200"
                   src={`https://www.youtube.com/embed/${video.videoId}`}
                   title={video.title}
+                  loading="lazy"
                 ></iframe>
-                <h3 className="text-xl font-bold mb-2">{video.title}</h3>
-                <p className="text-lg">{video.description}</p>
+                <h3 className="text-xl font-bold text-gray-800">{video.title}</h3>
               </div>
             ))}
           </div>
@@ -70,27 +72,27 @@ function Home() {
 
       {/* Noticias */}
       <section className="mb-8">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
+        <div className="bg-white p-6 rounded-lg shadow-md">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold">Noticias de Ingeniería</h2>
-            <Link
-              to="/noticias"
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-            >
-              Ver todas
+            <h2 className="text-2xl font-bold text-gray-800">Noticias Recientes</h2>
+            <Link to="/noticias" className="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+              Ver todos
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {/* Hacemos lo mismo para las noticias */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {noticias.map((noticia) => (
-              <div key={noticia.id} className="bg-gray-200 p-4 rounded-lg">
+              <div 
+                key={noticia.id} 
+                className="bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer"
+              >
                 <img
                   src={noticia.imageUrl}
                   alt={noticia.title}
                   className="mb-4 rounded-lg object-cover w-full h-48"
+                  loading="lazy"
                 />
-                <h3 className="text-xl font-bold mb-2">{noticia.title}</h3>
-                <p className="text-lg">{noticia.description}</p>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">{noticia.title}</h3>
+                <p className="text-base text-gray-600">{noticia.description}</p>
               </div>
             ))}
           </div>

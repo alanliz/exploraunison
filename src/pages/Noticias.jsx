@@ -1,26 +1,29 @@
 import React from 'react';
-import { useOutletContext, useNavigate } from 'react-router-dom';
+import { useOutletContext, useNavigate, Link } from 'react-router-dom';
 
 function NewsCard({ noticia }) {
+  const placeholderImage = "https://placehold.co/600x400/e2e8f0/e2e8f0";
+
   return (
-    // --- ¡CLASES HOVER AÑADIDAS! ---
-    <div className="bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer flex flex-col">
-      <img
-        src={noticia.imageUrl}
-        alt={noticia.title}
-        className="mb-4 rounded-lg w-full h-48 object-cover"
-        loading="lazy"
-      />
-      <h3 className="text-xl font-bold mb-2 text-gray-800">{noticia.title}</h3>
-      <p className="text-gray-600 flex-grow">{noticia.description}</p>
-    </div>
+    <Link to={`/noticia/${noticia.id}`} className="block h-full">
+      <div className="bg-white p-4 h-full rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer flex flex-col">
+        <img
+          src={noticia.imageUrl || placeholderImage}
+          alt={noticia.title}
+          className="mb-4 rounded-lg w-full h-48 object-cover bg-gray-200"
+          loading="lazy"
+        />
+        <h3 className="text-xl font-bold mb-2 text-gray-800">{noticia.title}</h3>
+        <p className="text-gray-600 flex-grow">{noticia.description}</p>
+      </div>
+    </Link>
   );
 }
 
 export default function Noticias() {
   const { content, loading } = useOutletContext();
   const noticias = content.news || [];
-  const navigate = useNavigate(); // Hook para la navegación
+  const navigate = useNavigate();
 
   if (loading) {
     return <div className="text-center p-8">Cargando noticias...</div>;
@@ -29,7 +32,6 @@ export default function Noticias() {
   return (
     <div className="bg-gray-50 min-h-screen">
       <main className="container mx-auto p-4 md:p-8">
-        {/* --- ¡BOTÓN DE VOLVER AÑADIDO! --- */}
         <button 
           onClick={() => navigate(-1)} 
           className="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors mb-6"

@@ -14,8 +14,9 @@ export default function AddContentModal({
     if (isEditing) {
       setFormData({ ...contentToEdit });
     } else {
+      // Limpia el formulario para el tipo de contenido actual
       setFormData({
-        title: "", author: "", volume: "", number: "", date: "", pages: "",
+        title: "", author: "", volume: "", number: "", date: "", pages: "", abstract: "",
         description: "", videoId: "", imageUrl: "", content: "", pdfFile: null,
       });
     }
@@ -51,6 +52,10 @@ export default function AddContentModal({
                 <label className="block text-sm font-medium text-gray-700 mb-1">Autor</label>
                 <input name="author" value={formData.author || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
               </div>
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Abstract (Resumen)</label>
+                <textarea name="abstract" value={formData.abstract || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" rows="4"></textarea>
+              </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Volumen</label>
                 <input name="volume" type="number" value={formData.volume || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
@@ -60,7 +65,7 @@ export default function AddContentModal({
                 <input name="number" type="number" value={formData.number || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Fecha</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Fecha de Publicación</label>
                 <input name="date" type="date" value={formData.date || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
               </div>
               <div>
@@ -97,6 +102,14 @@ export default function AddContentModal({
                 <label className="block text-sm font-medium text-gray-700 mb-1">Título de la Noticia</label>
                 <input name="title" value={formData.title || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
               </div>
+               <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Autor</label>
+                <input name="author" value={formData.author || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Fecha</label>
+                <input name="date" type="date" value={formData.date || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Descripción Breve (Resumen)</label>
                 <textarea name="description" value={formData.description || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" rows="3"></textarea>
@@ -111,8 +124,8 @@ export default function AddContentModal({
               </div>
             </div>
           )}
-
         </div>
+
         <div className="flex justify-end gap-4 mt-8">
           <button onClick={onClose} className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300">Cancelar</button>
           <button onClick={handleSubmit} className="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700">{isEditing ? 'Guardar Cambios' : 'Agregar'}</button>

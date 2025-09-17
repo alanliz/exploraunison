@@ -1,32 +1,26 @@
 import React, { useMemo } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 
-// Función para quitar acentos y convertir a minúsculas
-const normalizeText = (text) => {
-  if (!text) return "";
-  return text
-    .toString()
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-};
+// --- TARJETA REDISEÑADA ---
+function ArticleCard({ id, title, author, date, abstract }) {
+  // Truncamos el abstract para mostrar un fragmento
+  const shortAbstract = abstract?.split(' ').slice(0, 25).join(' ') + '...';
 
-function ArticleCard({ id, img, title, author, date }) {
   return (
-    // --- EFECTOS HOVER ESTANDARIZADOS ---
-    <div className="bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer">
-      <Link to={`/article/${id}`}>
-        <img
-          src={img}
-          alt={`Portada del artículo: ${title}`}
-          className="mb-4 rounded-lg w-full h-48 object-cover"
-          loading="lazy"
-        />
+    <Link to={`/article/${id}`}>
+      <div className="bg-white p-6 h-full rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer flex flex-col">
         <h3 className="text-xl font-bold mb-2 text-gray-800">{title}</h3>
-        <p className="text-gray-600">Autor: {author}</p>
-        <p className="text-gray-600">Fecha: {date}</p>
-      </Link>
-    </div>
+        <div className="text-sm text-gray-500 mb-4">
+          <span>Por: <strong>{author}</strong></span>
+          <span className="mx-2">|</span>
+          <span>{date}</span>
+        </div>
+        <p className="text-gray-600 flex-grow">{shortAbstract}</p>
+        <span className="text-blue-600 font-semibold mt-4 self-start">
+          Leer más &rarr;
+        </span>
+      </div>
+    </Link>
   );
 }
 
@@ -35,9 +29,9 @@ export default function Articles({ search }) {
   const articles = content.articles || [];
 
   const filteredArticles = useMemo(() => {
+    const normalizeText = (text) => text?.toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") || "";
     const normalizedSearch = normalizeText(search);
     if (!normalizedSearch) return articles;
-
     return articles.filter(
       (article) =>
         normalizeText(article.title).includes(normalizedSearch) ||
@@ -60,10 +54,10 @@ export default function Articles({ search }) {
                 <ArticleCard
                   key={article.id}
                   id={article.id}
-                  img={article.img}
                   title={article.title}
                   author={article.author}
                   date={article.date}
+                  abstract={article.abstract}
                 />
               ))}
             </div>

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { contentService } from "./services/contentService";
+import ScrollToTop from "./components/ScrollToTop";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Articles from "./pages/Articles";
@@ -9,6 +10,7 @@ import Admin from "./pages/Admin";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import Videos from "./pages/Videos";
 import Noticias from "./pages/Noticias";
+import NoticiaPage from "./pages/NoticiaPage";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -56,7 +58,9 @@ function App() {
   const handleDeleteContent = async (id, type) => {
     await contentService.deleteContent(id, type);
     const key = keyMap[type];
-    setContent(prev => ({ ...prev, [key]: prev[key].filter(item => item.id !== id) }));
+    if (window.confirm(`¿Estás seguro de que quieres eliminar este ${type.toLowerCase()}?`)) {
+      setContent(prev => ({ ...prev, [key]: prev[key].filter(item => item.id !== id) }));
+    }
   };
 
   const handleLogin = () => {
@@ -78,6 +82,7 @@ function App() {
         <Route path="article/:id" element={<ArticlePage />} />
         <Route path="videos" element={<Videos />} />
         <Route path="noticias" element={<Noticias />} />
+        <Route path="noticia/:id" element={<NoticiaPage />} />
       </Route>
       <Route
         path="/admin"
@@ -101,6 +106,7 @@ function App() {
 function AppWrapper() {
   return (
     <Router>
+      <ScrollToTop />
       <App />
     </Router>
   );

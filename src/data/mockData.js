@@ -4,7 +4,7 @@ export const videosData = [
     id: 1,
     title: "Introducción a la Robótica",
     description: "Un vistazo al futuro de la automatización.",
-    videoId: "dQw4w9WgXcQ", // ID del video de YouTube
+    videoId: "b_tBsDqIBQg", // ID del video de YouTube
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ export const videosData = [
     id: 3,
     title: "Desarrollo Sostenible en Ingeniería",
     description: "Construyendo un mañana más verde.",
-    videoId: "u0iEGk0Tjoc",
+    videoId: "7RmBNDcrQM8",
   },
 ];
 

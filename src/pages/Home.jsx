@@ -30,7 +30,7 @@ function Home() {
         <div className="bg-blue-800 text-white p-12 rounded-lg shadow-lg">
           <h2 className="text-4xl font-extrabold mb-4">Explora Nuestros Artículos</h2>
           <p className="text-lg mb-8 max-w-2xl mx-auto">
-            Descubre las últimas innovaciones, estudios y avances de la División de Ingeniería de la Universidad de Sonora.
+            Descubre las últimas innovaciones, estudios y avances de la Facultad de Ingeniería de la Universidad de Sonora.
           </p>
           <Link 
             to="/articles" 

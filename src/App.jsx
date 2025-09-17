@@ -1,6 +1,7 @@
+// src/App.jsx
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Layout from "./components/Layout"; // Importamos el Layout
 import Home from "./pages/Home";
 import Articles from "./pages/Articles";
 import ArticlePage from "./pages/ArticlePage";
@@ -12,18 +13,16 @@ function App() {
 
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-[#F5F5F5]">
-        <Header search={search} setSearch={setSearch} />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/articles" element={<Articles search={search} />} />
-            <Route path="/article/:id" element={<ArticlePage />} />
-            <Route path="/admin" element={<Admin />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <Routes>
+        {/* Creamos una ruta padre que usa el Layout */}
+        <Route path="/" element={<Layout search={search} setSearch={setSearch} />}>
+          {/* Todas estas rutas se renderizarán dentro del Outlet del Layout */}
+          <Route index element={<Home />} />
+          <Route path="articles" element={<Articles search={search} />} />
+          <Route path="article/:id" element={<ArticlePage />} />
+          <Route path="admin" element={<Admin />} />
+        </Route>
+      </Routes>
     </Router>
   );
 }

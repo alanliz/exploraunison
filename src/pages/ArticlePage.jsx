@@ -1,121 +1,71 @@
-import { useParams, Link } from "react-router-dom";
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
+// src/pages/ArticlePage.jsx
 
-// Sample articles array
-const articles = [
-  {
-    id: "1",
-    title: "Innovación en la Ingeniería Industrial",
-    volume: 5,
-    number: 2,
-    date: "01/01/2023",
-    author: "Dr. Juan Pérez",
-    pages: 15,
-    abstract:
-      "Este artículo explora las últimas innovaciones en la ingeniería industrial...",
-    img: "https://storage.googleapis.com/a1aa/image/520VHyBTuK5tIdDYRNDPeCt5kfGwzDc1Xw5NQE8H3cohVO4TA.jpg",
-    pdf: "#",
-  },
-  {
-    id: "2",
-    title: "Robótica en la Mecatrónica",
-    volume: 5,
-    number: 3,
-    date: "15/02/2023",
-    author: "Dra. María López",
-    pages: 12,
-    abstract:
-      "Artículo sobre robótica aplicada a la mecatrónica y su impacto en la industria moderna.",
-    img: "https://storage.googleapis.com/a1aa/image/xP1JcT3n7e2YVSZbeBaolYnv1bfbEio3FaKNqsQmueR1V5gPB.jpg",
-    pdf: "#",
-  },
-  {
-    id: "3",
-    title: "Inteligencia Artifical en Sistemas de Información",
-    volume: 5,
-    number: 3,
-    date: "15/02/2023",
-    author: "Dra. María López",
-    pages: 12,
-    abstract:
-      "Artículo sobre robótica aplicada a la mecatrónica y su impacto en la industria moderna.",
-    img: "https://storage.googleapis.com/a1aa/image/xP1JcT3n7e2YVSZbeBaolYnv1bfbEio3FaKNqsQmueR1V5gPB.jpg",
-    pdf: "#",
-  },
-];
+import React from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { articlesData } from '../data/mockData';
 
 export default function ArticlePage() {
-  const { id } = useParams();
-  const index = articles.findIndex((a) => a.id === id);
-  const article = articles[index];
 
-  if (!article) return <p className="p-4">Artículo no encontrado</p>;
+  const { id } = useParams(); 
+  const article = articlesData.find(a => a.id === Number(id));
+  if (!article) {
+    return (
+      <div className="container mx-auto p-8 text-center">
+        <h2 className="text-2xl font-bold">Artículo no encontrado</h2>
+        <Link to="/articles" className="text-blue-500 hover:underline mt-4 inline-block">
+          Volver a todos los artículos
+        </Link>
+      </div>
+    );
+  }
 
-  const prevArticle = articles[index - 1];
-  const nextArticle = articles[index + 1];
-
+  // Si encontramos el artículo, lo mostramos.
   return (
-    <div className="bg-[#F5F5F5] min-h-screen p-4">
-      <div className="bg-white text-gray-900 p-6 rounded-lg shadow-lg w-full max-w-3xl mx-auto">
-        {/* Button to go back to all articles */}
-        <Link
-          to="/articles"
-          className="inline-block mb-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Todos los artículos
+    <div className="container mx-auto p-8">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+        <Link to="/articles" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-6 inline-block">
+          &larr; Todos los artículos
         </Link>
 
-        <h2 className="text-3xl font-bold mb-4">{article.title}</h2>
-        <div className="flex flex-col md:flex-row">
-          <img
-            src={article.img}
-            alt={article.title}
-            className="mb-4 rounded-lg md:mb-0 md:mr-6"
-            width={300}
-            height={300}
-          />
-          <div>
-            <p><strong>Volumen:</strong> {article.volume}</p>
-            <p><strong>Número:</strong> {article.number}</p>
-            <p><strong>Fecha:</strong> {article.date}</p>
-            <p><strong>Autor:</strong> {article.author}</p>
-            <p><strong>Páginas:</strong> {article.pages}</p>
-            <p><strong>Abstract:</strong> {article.abstract}</p>
-            <a
-              href={article.pdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-block bg-[#D5433C] text-white px-4 py-2 rounded hover:bg-[#E1B73D]"
-            >
+        <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
+        
+        <div className="flex flex-col md:flex-row gap-8">
+          <div className="md:w-1/3">
+            <img 
+              src={article.img} 
+              alt={`Portada de ${article.title}`}
+              className="rounded-lg shadow-md w-full"
+            />
+          </div>
+          <div className="md:w-2/3">
+            <div className="text-lg space-y-2">
+              <p><strong>Volumen:</strong> {article.volume}</p>
+              <p><strong>Número:</strong> {article.number}</p>
+              <p><strong>Fecha:</strong> {article.date}</p>
+              <p><strong>Autor:</strong> {article.author}</p>
+              {/* Puedes añadir más campos si los tienes */}
+              <p className="pt-4">
+                <strong>Abstract:</strong> Este artículo explora las últimas innovaciones en la ingeniería industrial...
+              </p>
+            </div>
+            <button className="mt-6 bg-red-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-red-700">
               Descargar PDF
-            </a>
+            </button>
           </div>
         </div>
-
-        <div className="flex justify-center mt-6">
-          {prevArticle ? (
-            <Link
-              to={`/article/${prevArticle.id}`}
-              className="flex items-center gap-2 bg-gray-300 text-gray-900 px-4 py-2 rounded hover:bg-gray-400"
-            >
-              <ArrowLeftIcon className="w-5 h-5" />
-              Artículo Anterior
+        
+        {/* Opcional: Navegación al siguiente/anterior artículo */}
+        <div className="mt-8 pt-6 border-t flex justify-between">
+          {Number(id) > 1 && 
+            <Link to={`/article/${Number(id) - 1}`} className="text-gray-600 hover:text-black">
+              &larr; Artículo Anterior
             </Link>
-          ) : (
-            <div />
-          )}
-
-          {nextArticle ? (
-            <Link
-              to={`/article/${nextArticle.id}`}
-              className="flex items-center gap-2 bg-gray-300 text-gray-900 px-4 py-2 rounded hover:bg-gray-400 ml-4"
-            >
-              Siguiente Artículo
-              <ArrowRightIcon className="w-5 h-5" />
+          }
+          {Number(id) < articlesData.length && 
+            <Link to={`/article/${Number(id) + 1}`} className="text-gray-600 hover:text-black">
+              Artículo Siguiente &rarr;
             </Link>
-          ) : (
-            <div />
-          )}
+          }
         </div>
       </div>
     </div>

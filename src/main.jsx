@@ -1,10 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css"; // your Tailwind + global styles
+// src/main.jsx (CORREGIDO)
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+// CAMBIO IMPORTANTE: Importamos AppWrapper en lugar de App
+import AppWrapper from './App'; 
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    {/* CAMBIO IMPORTANTE: Usamos AppWrapper aquí */}
+    <AppWrapper /> 
   </React.StrictMode>
 );

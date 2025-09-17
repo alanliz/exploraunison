@@ -42,6 +42,21 @@ export const noticiasData = [
     imageUrl:
       "https://storage.googleapis.com/a1aa/image/5OJdJ9WXnGb5GJwEb65VteGu7ut8RqgTm2ni7WeWJN7fgcwnA.jpg",
   },
+
+  {
+    id: 4,
+    title: "Nuevo Laboratorio de Nanotecnología",
+    description: "La Unison inaugura un espacio de vanguardia para la investigación.",
+    imageUrl: "https://storage.googleapis.com/a1aa/image/VtGJfYUypxxzfELAbjx1FVIUiX925OX4GNtkZkeSMqY7gcwnA.jpg",
+    content: "El día de hoy, la Universidad de Sonora cortó el listón de su nuevo laboratorio de nanotecnología, equipado con microscopios de última generación y herramientas de fabricación a nanoescala. Este esfuerzo posiciona a la universidad como líder en el campo en la región noroeste."
+  },
+  {
+    id: 5,
+    title: "Equipo de Estudiantes Gana Competencia de Robótica",
+    description: "El equipo 'BúhosBots' se lleva el primer lugar nacional con su innovador diseño.",
+    imageUrl: "https://storage.googleapis.com/a1aa/image/NowRh2uEJeWJXScm6XngB5hI91H8zAVjMZSfIxPRZuNegcwnA.jpg",
+    content: "Con un robot capaz de navegar terrenos complejos de forma autónoma, el equipo 'BúhosBots' de la carrera de Mecatrónica superó a más de 50 equipos de todo el país en la competencia anual de robótica celebrada en Monterrey."
+  },
 ];
 
 
@@ -101,3 +116,5 @@ export const articlesData = [
     img: "https://storage.googleapis.com/a1aa/image/oEq1RfTlq72SCy4AyhKEOw0lO9ZRfZ3RGsro59DUqSzfqcwnA.jpg",
   },
 ];
+
+

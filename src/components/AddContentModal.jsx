@@ -1,180 +1,132 @@
-import { useState, useRef, useEffect } from "react";
+// src/components/AddContentModal.jsx
 
-export default function AddContentModal({ type, onClose, addArticle, addVideo, addNews }) {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [volume, setVolume] = useState("");
-  const [number, setNumber] = useState("");
-  const [date, setDate] = useState("");
-  const [pages, setPages] = useState("");
-  const [abstractText, setAbstractText] = useState("");
-  const [pdfFile, setPdfFile] = useState(null); // new state for PDF
+import { useState, useEffect } from "react";
 
-  const titleRef = useRef(null);
-  const authorRef = useRef(null);
+export default function AddContentModal({ 
+  type, 
+  onClose, 
+  contentToEdit, 
+  addContent, 
+  updateContent 
+}) {
+  const [formData, setFormData] = useState({});
+  const isEditing = !!contentToEdit;
 
-  // Auto-expand single-line inputs
   useEffect(() => {
-    if (titleRef.current) {
-      titleRef.current.style.width = "auto";
-      titleRef.current.style.width = titleRef.current.scrollWidth + 20 + "px";
+    if (isEditing) {
+      setFormData({ ...contentToEdit });
+    } else {
+      // Limpiamos el formulario si estamos en modo "Crear"
+      setFormData({
+        title: "", author: "", volume: "", number: "", date: "", pages: "",
+        description: "", videoId: "", imageUrl: "", content: "", pdfFile: null,
+      });
     }
-    if (authorRef.current) {
-      authorRef.current.style.width = "auto";
-      authorRef.current.style.width = authorRef.current.scrollWidth + 20 + "px";
-    }
-  }, [title, author]);
+  }, [contentToEdit, isEditing, type]);
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: files ? files[0] : value
+    }));
+  };
 
   const handleSubmit = () => {
-    if (type === "Artículo") {
-      const newArticle = {
-        id: Date.now(),
-        title,
-        author,
-        volume,
-        number,
-        date,
-        pages,
-        abstract: abstractText,
-        pdf: pdfFile, // include the uploaded PDF
-      };
-      addArticle(newArticle);
-    } else if (type === "Video") {
-      addVideo({ id: Date.now(), title, author });
-    } else if (type === "Noticia") {
-      addNews({ id: Date.now(), title, author });
+    if (isEditing) {
+      updateContent({ ...contentToEdit, ...formData });
+    } else {
+      addContent({ id: Date.now(), ...formData });
     }
     onClose();
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      {/* Slightly transparent overlay */}
-      <div className="absolute inset-0 bg-black opacity-30" onClick={onClose}></div>
-      <div className="relative bg-white p-6 rounded shadow-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto z-10">
-        <h2 className="text-xl font-bold mb-4">Agregar {type}</h2>
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-60">
+      <div className="bg-white p-8 rounded-lg shadow-2xl w-full max-w-3xl max-h-[95vh] overflow-y-auto">
+        <h2 className="text-2xl font-bold mb-6 text-gray-800">{isEditing ? `Editar ${type}` : `Agregar ${type}`}</h2>
+        
+        <div className="space-y-4">
+          {/* --- CAMPOS PARA ARTÍCULOS --- */}
+          {type === 'Artículo' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                <input name="title" value={formData.title || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Autor</label>
+                <input name="author" value={formData.author || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
+              
+              {/* --- CAMPOS DETALLADOS RESTAURADOS --- */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Volumen</label>
+                <input name="volume" type="number" value={formData.volume || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Número</label>
+                <input name="number" type="number" value={formData.number || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Fecha de Publicación</label>
+                <input name="date" type="date" value={formData.date || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Páginas</label>
+                <input name="pages" type="number" value={formData.pages || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Artículo (PDF)</label>
+                <input name="pdfFile" type="file" accept="application/pdf" onChange={handleChange} className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+              </div>
+            </div>
+          )}
 
-        {/* Title & Author line */}
-        <div className="flex gap-4 mb-4 flex-wrap">
-          <label className="flex-1">
-            Título:
-            <input
-              ref={titleRef}
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="border p-2 rounded w-full ml-2"
-              placeholder="Título del artículo"
-            />
-          </label>
+          {/* --- CAMPOS PARA VIDEOS --- */}
+          {type === 'Video' && (
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                <input name="title" value={formData.title || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Descripción Breve</label>
+                <textarea name="description" value={formData.description || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" rows="3"></textarea>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">ID del Video de YouTube</label>
+                <input name="videoId" value={formData.videoId || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
+            </div>
+          )}
 
-          <label className="flex-1">
-            Autor:
-            <input
-              ref={authorRef}
-              type="text"
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-              className="border p-2 rounded w-full"
-              placeholder="Autor"
-            />
-          </label>
+          {/* --- CAMPOS PARA NOTICIAS --- */}
+          {type === 'Noticia' && (
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                <input name="title" value={formData.title || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Descripción Breve (Resumen)</label>
+                <textarea name="description" value={formData.description || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" rows="3"></textarea>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">URL de la Imagen</label>
+                <input name="imageUrl" value={formData.imageUrl || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Contenido Completo de la Noticia</label>
+                <textarea name="content" value={formData.content || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" rows="6"></textarea>
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Volume, Number, Date, Pages line */}
-        {type === "Artículo" && (
-          <div className="flex gap-4 mb-4 flex-wrap">
-            <label className="flex-1">
-              Volumen:
-              <input
-                type="number"
-                value={volume}
-                onChange={(e) => setVolume(e.target.value)}
-                className="border p-2 rounded w-full"
-              />
-            </label>
-            <label className="flex-1">
-              Número:
-              <input
-                type="number"
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
-                className="border p-2 rounded w-full"
-              />
-            </label>
-            <label className="flex-1">
-              Fecha de publicación:
-              <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="border p-2 rounded w-full"
-              />
-            </label>
-            <label className="flex-1">
-              Número de páginas:
-              <input
-                type="number"
-                value={pages}
-                onChange={(e) => setPages(e.target.value)}
-                className="border p-2 rounded w-full"
-              />
-            </label>
-          </div>
-        )}
-
-        {/* Abstract */}
-        {type === "Artículo" && (
-          <>
-            <label className="block mb-4">
-              Abstract:
-              <textarea
-                value={abstractText}
-                onChange={(e) => setAbstractText(e.target.value)}
-                className="border p-2 rounded w-full"
-                rows={4}
-              />
-            </label>
-
-            {/* PDF upload */}
-            <label className="block mb-4">
-              Subir PDF:
-              <input
-                type="file"
-                accept="application/pdf"
-                onChange={(e) => setPdfFile(e.target.files[0])}
-                className="border p-1 rounded w-50 ml-2"
-              />
-            </label>
-          </>
-        )}
-
-        {/* Fields for Video / Noticia */}
-        {type !== "Artículo" && (
-          <label className="block mb-4">
-            Autor:
-            <input
-              type="text"
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-              className="border p-2 rounded w-full"
-            />
-          </label>
-        )}
-
-        <div className="flex justify-end gap-2">
-          <button
-            onClick={onClose}
-            className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
-          >
-            Cancelar
-          </button>
-          <button
-            onClick={handleSubmit}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Agregar
-          </button>
+        <div className="flex justify-end gap-4 mt-8">
+          <button onClick={onClose} className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300">Cancelar</button>
+          <button onClick={handleSubmit} className="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700">{isEditing ? 'Guardar Cambios' : 'Agregar'}</button>
         </div>
       </div>
     </div>

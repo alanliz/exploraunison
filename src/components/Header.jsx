@@ -47,7 +47,7 @@ export default function Header({ search, setSearch }) {
               <img src={logo} alt="Logo" className="h-12 w-auto" />
               
               {/* --- CAMBIO: Título completo restaurado --- */}
-              <span className="text-white text-xl font-bold tracking-tight hidden sm:block">
+              <span className="text-white text-2xl font-bold tracking-tight hidden sm:block">
                 Revista Explora Unison: Ingeniería y Futuro
               </span>
             </Link>

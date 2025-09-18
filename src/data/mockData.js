@@ -27,7 +27,7 @@ export const videosData = [
     id: 5,
     title: "Introducción a la Ingeniería Biomédica",
     description: "Explorando la fascinante intersección entre la medicina y la ingeniería.",
-    videoId: "w4itf-p_gGs",
+    videoId: "Lkq_E_IYvvE",
   },
   {
     id: 6,

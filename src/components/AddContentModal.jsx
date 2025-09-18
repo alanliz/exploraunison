@@ -106,7 +106,27 @@ export default function AddContentModal({ type, onClose, contentToEdit, addConte
                 <textarea name="abstract" value={formData.abstract || ''} onChange={handleChange} className={`p-2 rounded-lg w-full shadow-sm ${errorClass('abstract')}`} rows="4"></textarea>
                 {errors.abstract && <p className="text-red-600 text-xs mt-1">{errors.abstract}</p>}
               </div>
-              {/* ... Otros campos de artículo con la misma lógica de errores ... */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Volumen</label>
+                <input name="volume" type="number" value={formData.volume || ''} onChange={handleChange} className="p-2 rounded-lg w-full shadow-sm border-gray-300" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Número</label>
+                <input name="number" type="number" value={formData.number || ''} onChange={handleChange} className="p-2 rounded-lg w-full shadow-sm border-gray-300" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Fecha de Publicación</label>
+                <input name="date" type="date" value={formData.date || ''} onChange={handleChange} className={`p-2 rounded-lg w-full shadow-sm ${errorClass('date')}`} />
+                {errors.date && <p className="text-red-600 text-xs mt-1">{errors.date}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Páginas</label>
+                <input name="pages" type="number" value={formData.pages || ''} onChange={handleChange} className="p-2 rounded-lg w-full shadow-sm border-gray-300" />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Artículo (PDF)</label>
+                <input name="pdfFile" type="file" accept="application/pdf" onChange={handleChange} className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+              </div>
             </div>
           )}
 
@@ -119,7 +139,7 @@ export default function AddContentModal({ type, onClose, contentToEdit, addConte
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Descripción Breve</label>
-                <textarea name="description" value={formData.description || ''} onChange={handleChange} className="p-2 rounded-lg w-full shadow-sm" rows="3"></textarea>
+                <textarea name="description" value={formData.description || ''} onChange={handleChange} className="p-2 rounded-lg w-full shadow-sm border-gray-300" rows="3"></textarea>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">ID o URL completa de YouTube</label>
@@ -136,7 +156,19 @@ export default function AddContentModal({ type, onClose, contentToEdit, addConte
                 <input name="title" value={formData.title || ''} onChange={handleChange} className={`p-2 rounded-lg w-full shadow-sm ${errorClass('title')}`} />
                 {errors.title && <p className="text-red-600 text-xs mt-1">{errors.title}</p>}
               </div>
-              {/* ... Otros campos de noticia con la misma lógica de errores ... */}
+               <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Autor</label>
+                <input name="author" value={formData.author || ''} onChange={handleChange} className={`p-2 rounded-lg w-full shadow-sm ${errorClass('author')}`} />
+                {errors.author && <p className="text-red-600 text-xs mt-1">{errors.author}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Fecha</label>
+                <input name="date" type="date" value={formData.date || ''} onChange={handleChange} className="p-2 rounded-lg w-full shadow-sm border-gray-300" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Descripción Breve (Resumen)</label>
+                <textarea name="description" value={formData.description || ''} onChange={handleChange} className="p-2 rounded-lg w-full shadow-sm border-gray-300" rows="3"></textarea>
+              </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Imagen de Portada</label>
                 <div className="flex items-center gap-4 mb-2">
@@ -151,7 +183,7 @@ export default function AddContentModal({ type, onClose, contentToEdit, addConte
                 {errors.imageFile && <p className="text-red-600 text-xs mt-1">{errors.imageFile}</p>}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Contenido Completo</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Contenido Completo de la Noticia</label>
                 <textarea name="content" value={formData.content || ''} onChange={handleChange} className={`p-2 rounded-lg w-full shadow-sm ${errorClass('content')}`} rows="6"></textarea>
                 {errors.content && <p className="text-red-600 text-xs mt-1">{errors.content}</p>}
               </div>

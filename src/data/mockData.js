@@ -51,7 +51,7 @@ export const noticiasData = [
     id: 1,
     title: "Revolución Agrícola: Estudiantes Implementan Drones con IA en Campos de Sonora",
     description: "Un equipo multidisciplinario de la Unison desarrolla un sistema para monitorear cultivos y optimizar el uso del agua.",
-    imageUrl: "https://images.unsplash.com/photo-1621838440330-928507c8734c?q=80&w=2070&auto-format&fit=crop",
+    imageUrl: "",
     author: "Ana Valenzuela",
     date: "2025-09-15",
     content: `En un esfuerzo por combatir la creciente escasez de agua y mejorar la eficiencia agrícola en el estado, un grupo multidisciplinario de estudiantes de Ingeniería en Mecatrónica, Sistemas de Información y Agronomía ha presentado un proyecto pionero que promete cambiar las reglas del juego para el campo sonorense. Bautizado como "Ojo del Desierto", el sistema utiliza una flota de drones equipados con cámaras multiespectrales e inteligencia artificial para realizar un diagnóstico preciso y en tiempo real de la salud de los cultivos.

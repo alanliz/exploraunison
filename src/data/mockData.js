@@ -109,7 +109,7 @@ export const articlesData = [
     date: "2025-01-15",
     volume: 1,
     number: 1,
-    pages: 12, 
+    pages: 12,
     abstract: "Este artículo explora el uso de algoritmos de aprendizaje automático para predecir la demanda y optimizar las rutas logísticas en cadenas de suministro complejas, demostrando una reducción de costos del 15% en casos de estudio."
   },
   {
@@ -120,7 +120,6 @@ export const articlesData = [
     volume: 1,
     number: 1,
     pages: 18,
-    img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fescueladeposgrado.edu.pe%2Fingenieria-de-sistemas-funciones-y-campo-laboral%2F&psig=AOvVaw2rYuDEHos5kXGNzDqf0SzV&ust=1758169715362000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKC6xfL63o8DFQAAAAAdAAAAABAE",
     abstract: "Se presenta un nuevo controlador adaptativo para robots móviles que mejora la navegación en entornos dinámicos. Las pruebas muestran una reducción del 25% en colisiones en comparación con los métodos tradicionales."
   },
   {
@@ -131,7 +130,6 @@ export const articlesData = [
     volume: 1,
     number: 2,
     pages: 15,
-    img: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070&auto=format&fit=crop",
     abstract: "Análisis de las vulnerabilidades en dispositivos IIoT y propuesta de un marco de seguridad multicapa basado en blockchain para garantizar la integridad de los datos en plantas de manufactura inteligente."
   },
   {
@@ -142,8 +140,17 @@ export const articlesData = [
     volume: 1,
     number: 2,
     pages: 22,
-    img: "https://images.unsplash.com/photo-1517976487-142104880376?q=80&w=2070&auto=format&fit=crop",
     abstract: "Estudio sobre el desarrollo y caracterización de nuevos materiales compuestos de fibra de carbono con matrices poliméricas termorresistentes, logrando una mejora del 10% en la relación resistencia-peso."
+  },
+  {
+    id: 11,
+    title: "Sistema Autónomo de Drones para Inspección de Líneas Eléctricas",
+    author: "Ing. Fernanda Soto",
+    date: "2025-04-30",
+    volume: 1,
+    number: 2,
+    pages: 14,
+    abstract: "Desarrollo de un sistema basado en drones y visión por computadora para la inspección autónoma de torres y líneas de alta tensión, reduciendo el riesgo humano y los costos operativos."
   },
   {
     id: 5,
@@ -153,7 +160,6 @@ export const articlesData = [
     volume: 2,
     number: 1,
     pages: 16,
-    img: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1780&auto=format&fit=crop",
     abstract: "Implementación de una Red Neuronal Convolucional (CNN) para la detección temprana de anomalías en imágenes de resonancia magnética, alcanzando una precisión del 98% en el conjunto de datos de prueba."
   },
   {
@@ -164,8 +170,17 @@ export const articlesData = [
     volume: 2,
     number: 1,
     pages: 19,
-    img: "https://images.unsplash.com/photo-1567201082344-681b418a1a38?q=80&w=1934&auto=format&fit=crop",
     abstract: "Diseño y simulación de un sistema de gestión de agua basado en sensores IoT y modelos predictivos para optimizar el riego agrícola en la región de Sonora, proyectando un ahorro de agua del 30%."
+  },
+   {
+    id: 12,
+    title: "Realidad Aumentada para Mantenimiento Industrial Remoto",
+    author: "Dr. Oscar Luna",
+    date: "2025-06-28",
+    volume: 2,
+    number: 1,
+    pages: 21,
+    abstract: "Aplicación de tecnologías de Realidad Aumentada (AR) para permitir a técnicos expertos guiar de forma remota a personal en planta durante tareas de mantenimiento complejo, reduciendo tiempos de inactividad."
   },
   {
     id: 7,
@@ -175,8 +190,7 @@ export const articlesData = [
     volume: 2,
     number: 2,
     pages: 17,
-    img: "https://images.unsplash.com/photo-1533142269689-132b850d3a5a?q=80&w=1935&auto=format&fit=crop",
-    abstract: "Este estudio evalúa el comportamiento térmico de edificaciones construidas con bloques de tierra comprimida (BTC) estabilizados, una técnica de adobe modernizado. Los resultados demuestran una reducción de hasta el 50% en la necesidad de climatización artificial en el clima semiárido de Sonora."
+    abstract: "Este estudio evalúa el comportamiento térmico de edificaciones construidas con bloques de tierra comprimida (BTC) estabilizados. Los resultados demuestran una reducción de hasta el 50% en la necesidad de climatización artificial en el clima semiárido de Sonora."
   },
   {
     id: 8,
@@ -186,7 +200,46 @@ export const articlesData = [
     volume: 2,
     number: 2,
     pages: 25,
-    img: "https://images.unsplash.com/photo-1611843467160-25afb8df1074?q=80&w=2070&auto=format&fit=crop",
-    abstract: "Presentación de un proceso hidrometalúrgico innovador para la extracción de litio a partir de yacimientos de arcilla, como los encontrados en Sonora. El método propuesto muestra una eficiencia de extracción del 92%, con un menor impacto ambiental en comparación con las técnicas tradicionales."
+    abstract: "Presentación de un proceso hidrometalúrgico innovador para la extracción de litio a partir de yacimientos de arcilla, mostrando una eficiencia del 92% con un menor impacto ambiental."
   },
+  {
+    id: 9,
+    title: "Prótesis Biónicas Controladas por Interfaz Neuronal",
+    author: "Dra. Elena Villa",
+    date: "2025-09-05",
+    volume: 3,
+    number: 1,
+    pages: 24,
+    abstract: "Desarrollo de una prótesis de mano biónica que interpreta señales electromiográficas (EMG) para lograr un control más intuitivo y natural por parte del usuario, utilizando un modelo de IA embebido."
+  },
+  {
+    id: 10,
+    title: "Modelado Predictivo de la Calidad del Aire en Hermosillo",
+    author: "Ing. Javier Rojas",
+    date: "2025-09-20",
+    volume: 3,
+    number: 1,
+    pages: 18,
+    abstract: "Uso de redes neuronales recurrentes (LSTM) para modelar y predecir concentraciones de partículas PM2.5 en la ciudad de Hermosillo, basándose en datos históricos, climáticos y de tráfico."
+  },
+  {
+    id: 13,
+    title: "Uso de Residuos Mineros como Agregado en Concreto",
+    author: "Dr. Ricardo Morales",
+    date: "2025-10-15",
+    volume: 3,
+    number: 2,
+    pages: 20,
+    abstract: "Investigación sobre la viabilidad técnica de utilizar jales de la industria minera de Sonora como agregado fino en la producción de concreto, promoviendo una economía circular y reduciendo el impacto ambiental."
+  },
+  {
+    id: 14,
+    title: "Simulación Aerodinámica para Edificios Altos",
+    author: "Arq. Mónica Cárdenas",
+    date: "2025-10-28",
+    volume: 3,
+    number: 2,
+    pages: 16,
+    abstract: "Aplicación de la Dinámica de Fluidos Computacional (CFD) para analizar las cargas de viento en diseños de edificios altos, optimizando la forma estructural para mejorar la seguridad y el confort de los ocupantes."
+  }
 ];

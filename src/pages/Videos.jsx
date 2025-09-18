@@ -1,5 +1,6 @@
 import React from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
 function VideoCard({ video }) {
   return (
@@ -33,11 +34,12 @@ export default function Videos() {
       <main className="container mx-auto p-4 md:p-8">
         {/* --- ¡BOTÓN DE VOLVER AÑADIDO! --- */}
         <button 
-          onClick={() => navigate(-1)} 
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors mb-6"
-        >
-          &larr; Volver
-        </button>
+  onClick={() => navigate(-1)} 
+  className="flex items-center gap-2 text-blue-600 font-semibold border-2 border-blue-600 rounded-full px-4 py-2 transition-all duration-300 hover:bg-blue-600 hover:text-white mb-6"
+>
+  <ArrowLeftIcon className="h-4 w-4" />
+  Volver
+</button>
 
         <section className="bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-3xl font-bold mb-6 text-gray-800">Todos los Videos</h2>

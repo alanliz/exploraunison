@@ -1,24 +1,22 @@
 import { useState, useEffect } from "react";
 
-export default function AddContentModal({
-  type,
-  onClose,
-  contentToEdit,
-  addContent,
-  updateContent
-}) {
+export default function AddContentModal({ type, onClose, contentToEdit, addContent, updateContent }) {
   const [formData, setFormData] = useState({});
   const isEditing = !!contentToEdit;
+  const [imageInputMethod, setImageInputMethod] = useState('file');
 
   useEffect(() => {
     if (isEditing) {
       setFormData({ ...contentToEdit });
+      if (contentToEdit.imageUrl) {
+        setImageInputMethod('url');
+      }
     } else {
-      // Limpia el formulario para el tipo de contenido actual
       setFormData({
         title: "", author: "", volume: "", number: "", date: "", pages: "", abstract: "",
-        description: "", videoId: "", imageUrl: "", content: "", pdfFile: null,
+        description: "", videoId: "", imageUrl: "", content: "", pdfFile: null, imageFile: null,
       });
+      setImageInputMethod('file');
     }
   }, [contentToEdit, isEditing, type]);
 
@@ -34,6 +32,15 @@ export default function AddContentModal({
       addContent(formData, type);
     }
     onClose();
+  };
+  
+  const handleImageMethodChange = (method) => {
+    setImageInputMethod(method);
+    if (method === 'file') {
+      setFormData(prev => ({ ...prev, imageUrl: '' }));
+    } else {
+      setFormData(prev => ({ ...prev, imageFile: null }));
+    }
   };
 
   return (
@@ -90,8 +97,8 @@ export default function AddContentModal({
                 <textarea name="description" value={formData.description || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" rows="3"></textarea>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">ID del Video de YouTube</label>
-                <input name="videoId" value={formData.videoId || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">ID o URL completa de YouTube</label>
+                <input name="videoId" value={formData.videoId || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" placeholder="Ej: https://www.youtube.com/watch?v=gApqA3yMrOw" />
               </div>
             </div>
           )}
@@ -115,8 +122,16 @@ export default function AddContentModal({
                 <textarea name="description" value={formData.description || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" rows="3"></textarea>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">URL de la Imagen</label>
-                <input name="imageUrl" value={formData.imageUrl || ''} onChange={handleChange} className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+                <label className="block text-sm font-medium text-gray-700 mb-2">Imagen de Portada</label>
+                <div className="flex items-center gap-4 mb-2">
+                  <label className="flex items-center"><input type="radio" name="imageMethod" value="file" checked={imageInputMethod === 'file'} onChange={() => handleImageMethodChange('file')} className="h-4 w-4 text-blue-600 border-gray-300"/><span className="ml-2 text-sm text-gray-600">Subir Archivo</span></label>
+                  <label className="flex items-center"><input type="radio" name="imageMethod" value="url" checked={imageInputMethod === 'url'} onChange={() => handleImageMethodChange('url')} className="h-4 w-4 text-blue-600 border-gray-300"/><span className="ml-2 text-sm text-gray-600">Usar URL</span></label>
+                </div>
+                {imageInputMethod === 'file' ? (
+                  <input name="imageFile" type="file" accept="image/*" onChange={handleChange} className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+                ) : (
+                  <input name="imageUrl" value={formData.imageUrl || ''} onChange={handleChange} placeholder="https://ejemplo.com/imagen.jpg" className="border-gray-300 p-2 rounded-lg w-full shadow-sm" />
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Contenido Completo de la Noticia</label>
@@ -125,7 +140,6 @@ export default function AddContentModal({
             </div>
           )}
         </div>
-
         <div className="flex justify-end gap-4 mt-8">
           <button onClick={onClose} className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300">Cancelar</button>
           <button onClick={handleSubmit} className="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700">{isEditing ? 'Guardar Cambios' : 'Agregar'}</button>

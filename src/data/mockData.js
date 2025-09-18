@@ -1,3 +1,6 @@
+import pdfArticulo1 from '../assets/pdfs/articulo1.pdf';
+import pdfArticulo2 from '../assets/pdfs/articulo2.pdf';
+
 export const videosData = [
   {
     id: 1,
@@ -110,7 +113,8 @@ export const articlesData = [
     volume: 1,
     number: 1,
     pages: 12,
-    abstract: "Este artículo explora el uso de algoritmos de aprendizaje automático para predecir la demanda y optimizar las rutas logísticas en cadenas de suministro complejas, demostrando una reducción de costos del 15% en casos de estudio."
+    abstract: "Este artículo explora el uso de algoritmos de aprendizaje automático para predecir la demanda y optimizar las rutas logísticas en cadenas de suministro complejas, demostrando una reducción de costos del 15% en casos de estudio.",
+    pdfUrl: pdfArticulo1
   },
   {
     id: 2,
@@ -120,7 +124,8 @@ export const articlesData = [
     volume: 1,
     number: 1,
     pages: 18,
-    abstract: "Se presenta un nuevo controlador adaptativo para robots móviles que mejora la navegación en entornos dinámicos. Las pruebas muestran una reducción del 25% en colisiones en comparación con los métodos tradicionales."
+    abstract: "Se presenta un nuevo controlador adaptativo para robots móviles que mejora la navegación en entornos dinámicos. Las pruebas muestran una reducción del 25% en colisiones en comparación con los métodos tradicionales.",
+    pdfUrl: pdfArticulo2
   },
   {
     id: 3,

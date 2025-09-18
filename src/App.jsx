@@ -11,32 +11,46 @@ import AdminLoginPage from "./pages/AdminLoginPage";
 import Videos from "./pages/Videos";
 import Noticias from "./pages/Noticias";
 import NoticiaPage from "./pages/NoticiaPage";
+import { articlesData, videosData, noticiasData } from "./data/mockData";
 
 function App() {
   const [search, setSearch] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
-  const [content, setContent] = useState({ articles: [], videos: [], news: [] });
-  const [loading, setLoading] = useState(true);
+  // El estado se inicializa desde una función que revisa localStorage
+  const [content, setContent] = useState(() => {
+    try {
+      const savedContent = localStorage.getItem('appContent');
+      // Si hay datos guardados y no están vacíos, los usamos
+      if (savedContent && savedContent !== 'null') {
+        return JSON.parse(savedContent);
+      }
+    } catch (error) {
+      console.error("Error al leer de localStorage", error);
+    }
+    // Si no hay nada guardado, usamos los datos iniciales del archivo mock
+    return { articles: articlesData, videos: videosData, news: noticiasData };
+  });
+
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Este efecto guarda los cambios en localStorage cada vez que 'content' se actualiza
   useEffect(() => {
-    const loadContent = async () => {
-      try {
-        setLoading(true);
-        const initialContent = await contentService.getAllContent();
-        setContent(initialContent);
-        setError(null);
-      } catch (err) {
-        setError("No se pudo cargar el contenido.");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadContent();
-  }, []);
+    try {
+      // Antes de guardar, creamos una copia y quitamos los archivos temporales (File objects)
+      const contentToStore = JSON.stringify(content, (key, value) => {
+        if (key === 'pdfFile' || key === 'imageFile') {
+          return undefined; // Excluye estas propiedades del JSON para evitar errores
+        }
+        return value;
+      });
+      localStorage.setItem('appContent', contentToStore);
+    } catch (error) {
+      console.error("Error al guardar en localStorage", error);
+    }
+  }, [content]);
 
   const keyMap = { Artículo: 'articles', Video: 'videos', Noticia: 'news' };
 
@@ -56,7 +70,6 @@ function App() {
   };
 
   const handleDeleteContent = async (id, type) => {
-    // Pide confirmación antes de llamar al servicio
     if (window.confirm(`¿Estás seguro de que quieres eliminar este ${type.toLowerCase()}?`)) {
       await contentService.deleteContent(id, type);
       const key = keyMap[type];

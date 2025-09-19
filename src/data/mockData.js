@@ -77,7 +77,7 @@ El edificio en sí es una obra de ingeniería sostenible. Su diseño bioclimáti
     id: 3,
     title: "Lanzan Programa de Becas 'Ingenieras del Futuro' para Impulsar el Talento Femenino",
     description: "En alianza con empresas líderes, la Unison crea un nuevo fondo de becas destinado a reducir la brecha de género en carreras STEM.",
-    imageUrl: "https://images.unsplash.com/photo-1573164574572-597e5627b7c3?q=80&w=2069&auto-format&fit=crop",
+    imageUrl: "https://puebla.anahuac.mx/hubfs/Articulo%20del%20Mes-01%20%285%29.webp",
     author: "Sofía Robles",
     date: "2025-09-05",
     content: `Con el objetivo de fomentar la participación y el liderazgo de las mujeres en áreas de ciencia, tecnología, ingeniería y matemáticas (STEM), la Universidad de Sonora, en colaboración con un consorcio de empresas tecnológicas y mineras, ha lanzado oficialmente el programa de becas "Ingenieras del Futuro". Este ambicioso programa ofrecerá apoyo financiero completo, que incluye matrícula, manutención y material de estudio, a 50 estudiantes de nuevo ingreso cada año, con el fin de derribar las barreras económicas que a menudo limitan el acceso a la educación superior.
@@ -90,7 +90,7 @@ El rector de la universidad, por su parte, destacó que esta iniciativa es un pa
     id: 4,
     title: "Desarrollan Software de Código Abierto para la Modelación de Yacimientos Mineros",
     description: "Un equipo del Departamento de Minas y Geología crea una herramienta para mejorar la seguridad y eficiencia en la planeación minera.",
-    imageUrl: "https://images.unsplash.com/photo-1629231409556-51a7b213b35b?q=80&w=1964&auto-format&fit=crop",
+    imageUrl: "https://www.shutterstock.com/image-photo/engineer-hardhat-using-laptop-heavy-260nw-2558856497.jpg",
     author: "Miguel Hernandez",
     date: "2025-08-28",
     content: `Respondiendo a las necesidades de la industria minera regional, un grupo de investigación y estudiantes de posgrado del Departamento de Minas y Geología ha liberado la primera versión de "GeoModel-SON", un software de código abierto para la modelación tridimensional de yacimientos. Esta iniciativa busca democratizar el acceso a herramientas tecnológicas avanzadas, permitiendo a pequeñas y medianas empresas mineras, así como a consultores independientes, realizar análisis geológicos complejos que hasta ahora estaban reservados para grandes corporaciones debido a los altos costos de las licencias de software comercial.
@@ -101,7 +101,7 @@ El software, desarrollado principalmente en Python y C++, utiliza algoritmos geo
     id: 5,
     title: "Equipo 'Baja Unison' se Prepara para Competencia Internacional de Vehículos Off-Road",
     description: "Estudiantes de ingeniería diseñan y construyen desde cero un vehículo todo terreno para el prestigioso concurso Baja SAE.",
-    imageUrl: "https://images.unsplash.com/photo-1568652654012-2c695d7353b3?q=80&w=1974&auto-format&fit=crop",
+    imageUrl: "",
     author: "Rodrigo Parra",
     date: "2025-08-22",
     content: `El taller de Ingeniería Mecánica de la Universidad de Sonora está en plena ebullición. Entre el ruido de soldadoras, esmeriles y llaves de impacto, el equipo 'Baja Unison' trabaja contra reloj para finalizar su prototipo para la competencia Baja SAE, un evento internacional donde equipos universitarios de todo el mundo ponen a prueba la resistencia y el diseño de sus vehículos todo terreno, construidos íntegramente por los estudiantes. El vehículo, bautizado como "Cimarrón VII", es el resultado de nueve meses de diseño, simulación y manufactura.

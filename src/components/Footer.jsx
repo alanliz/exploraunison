@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
               <img src={logo} alt="Logo Explora Unison" className="h-12 mr-3"/>
-              <span className="text-white font-bold text-2xl">Explora Unison</span>
+              <span className="text-white font-bold text-2xl">Revista Explora Unison</span>
             </div>
             <p className="text-slate-400 max-w-md">
               Revista digital de divulgación científica de la Facultad de Ingeniería de la Universidad de Sonora.
